@@ -1,0 +1,1326 @@
+{
+  "name": "tpi-ai-express",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        1200,
+        1632
+      ],
+      "id": "a71c857d-cb73-4f08-b4be-b6b0d09b9fc4",
+      "name": "Manual Test"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "07cabf5e-9958-43d6-a238-574344251553",
+              "name": "USE_TEST",
+              "value": true,
+              "type": "boolean"
+            },
+            {
+              "id": "4335a344-74fd-47d5-8dce-27e94bee3953",
+              "name": "TEST_BASE_DATE",
+              "value": "29/04/2026",
+              "type": "string"
+            },
+            {
+              "id": "b2853eac-670e-4ab5-b070-0394a0d417a8",
+              "name": "PRODUCTION_SPREADSHEET_ID",
+              "value": "1BrY9dLfS0sH5aImikidFXwYeSIA6UOffMH11rXQSOg0",
+              "type": "string"
+            },
+            {
+              "id": "558762e6-9df3-4f34-89d1-136f6e71f42d",
+              "name": "TEST_SPREADSHEET_ID",
+              "value": "1CgKS-yn6T0ROdmKUU0yu0NQtCSVloi2680PX6HsB_yo",
+              "type": "string"
+            },
+            {
+              "id": "b5c17cb5-a531-4f43-870e-4d4fb9ae8d64",
+              "name": "SOURCE_SHEET",
+              "value": "FM-DSM-001",
+              "type": "string"
+            },
+            {
+              "id": "90d9b78e-1dff-40c4-bac2-b5eb145422d0",
+              "name": "HISTORY_SPREADSHEET_ID",
+              "value": "1eGIjgXrqohygRMCDkX5WDmgilYAMthTU067WAtq3TvI",
+              "type": "string"
+            },
+            {
+              "id": "222c0c10-aecf-4936-a689-658a4205db25",
+              "name": "HISTORY_SHEET",
+              "value": "FM-DLW-008",
+              "type": "string"
+            },
+            {
+              "id": "9502f6e6-8e29-42cf-a9db-f43511181e61",
+              "name": "COST_SPREADSHEET_ID",
+              "value": "1e2p3wr1Koxw09TpcT9LxaokEo_bmmwUqFOcHkGljg6Y",
+              "type": "string"
+            },
+            {
+              "id": "11bcc9fd-4b2d-46d1-afb0-deda8360def7",
+              "name": "COST_SHEET",
+              "value": "SD-DLW-006",
+              "type": "string"
+            },
+            {
+              "id": "ac74bad0-72d1-4ef8-bd09-635c590a58d6",
+              "name": "CAR_SPREADSHEET_ID",
+              "value": "1YS2lspnrOMgYGvcgC-_3Wuh9ecWM4XCGyOMITQ6jVwI",
+              "type": "string"
+            },
+            {
+              "id": "571b8413-8b7d-49ed-814b-7581caf7120f",
+              "name": "CAR_SHEET",
+              "value": "CAR_DATA",
+              "type": "string"
+            },
+            {
+              "id": "08a14a9d-7725-447d-884c-83363a21339d",
+              "name": "OUTPUT_SPREADSHEET_ID",
+              "value": "1YS2lspnrOMgYGvcgC-_3Wuh9ecWM4XCGyOMITQ6jVwI",
+              "type": "string"
+            },
+            {
+              "id": "3e91b48d-8c01-4677-b74c-01ac68bf5535",
+              "name": "OUTPUT_SHEET",
+              "value": "DELIVERY_PLAN",
+              "type": "string"
+            },
+            {
+              "id": "60982b8d-c5e5-4759-848a-e9fab1f60652",
+              "name": "SPEED_PICKUP_KMH",
+              "value": 90,
+              "type": "number"
+            },
+            {
+              "id": "5c7b44f1-903e-4858-b864-0ed05ff4b235",
+              "name": "SPEED_6W_KMH",
+              "value": 80,
+              "type": "number"
+            },
+            {
+              "id": "29b8b95c-948a-4735-9f05-75879c2b34d4",
+              "name": "SPEED_TRAILER_KMH",
+              "value": 55,
+              "type": "number"
+            },
+            {
+              "id": "27ddfab1-34fb-4b9c-b307-a55dced57490",
+              "name": "MAX_DAILY_HOURS",
+              "value": 8,
+              "type": "number"
+            },
+            {
+              "id": "a6ff47cd-0ac3-47eb-be16-9a4fb50e4c87",
+              "name": "DAY_START_HOUR",
+              "value": 8,
+              "type": "number"
+            },
+            {
+              "id": "5b255e47-35ae-4c84-8c9f-92da4adf73aa",
+              "name": "TIMEZONE",
+              "value": "Asia/Bangkok",
+              "type": "string"
+            },
+            {
+              "id": "67815f5e-11b4-4186-ac69-f607c70f1f28",
+              "name": "MAX_TRIPS_PER_VEHICLE_PER_DAY",
+              "value": 3,
+              "type": "number"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1456,
+        1536
+      ],
+      "id": "aa8a9df2-c0fc-4462-b7d0-75aa715dee9e",
+      "name": "Config - Spreadsheet IDs"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "={{ $('Config - Spreadsheet IDs').first().json.USE_TEST ? $('Config - Spreadsheet IDs').first().json.TEST_SPREADSHEET_ID : $('Config - Spreadsheet IDs').first().json.PRODUCTION_SPREADSHEET_ID }}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "={{ $('Config - Spreadsheet IDs').first().json.SOURCE_SHEET }}",
+          "mode": "name"
+        },
+        "options": {
+          "dataLocationOnSheet": {
+            "values": {
+              "rangeDefinition": "specifyRangeA1",
+              "range": "A1:Q"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1792,
+        1152
+      ],
+      "id": "9b4a22ad-84b3-43c2-9757-d19dfcd5d604",
+      "name": "Read Orders A:Q",
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "a4Xw1y7SaDpe3N5m",
+          "name": "dts-n8n"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "={{ $('Config - Spreadsheet IDs').first().json.HISTORY_SPREADSHEET_ID }}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "={{ $('Config - Spreadsheet IDs').first().json.HISTORY_SHEET }}",
+          "mode": "name"
+        },
+        "options": {
+          "dataLocationOnSheet": {
+            "values": {
+              "rangeDefinition": "specifyRangeA1",
+              "range": "E1:G"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1792,
+        1312
+      ],
+      "id": "b7a11a64-72f9-42f7-a192-721901e8c4ed",
+      "name": "Read History E:G",
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "a4Xw1y7SaDpe3N5m",
+          "name": "dts-n8n"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "={{ $('Config - Spreadsheet IDs').first().json.COST_SPREADSHEET_ID }}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "={{ $('Config - Spreadsheet IDs').first().json.COST_SHEET }}",
+          "mode": "name"
+        },
+        "options": {
+          "dataLocationOnSheet": {
+            "values": {
+              "rangeDefinition": "specifyRangeA1",
+              "range": "B2:C"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1776,
+        1456
+      ],
+      "id": "9bdd4eea-fc7b-4e80-b2b2-9cb5f7cd4574",
+      "name": "Read Cost - Account Mileage",
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "a4Xw1y7SaDpe3N5m",
+          "name": "dts-n8n"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "={{ $('Config - Spreadsheet IDs').first().json.CAR_SPREADSHEET_ID }}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "={{ $('Config - Spreadsheet IDs').first().json.CAR_SHEET }}",
+          "mode": "name"
+        },
+        "options": {
+          "dataLocationOnSheet": {
+            "values": {
+              "rangeDefinition": "specifyRangeA1",
+              "range": "A1:D"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1776,
+        2464
+      ],
+      "id": "5a63988c-0b74-40d2-a21e-25cb57fe3385",
+      "name": "Read CAR_DATA A:C",
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "a4Xw1y7SaDpe3N5m",
+          "name": "dts-n8n"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "numberInputs": 10
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        2272,
+        1792
+      ],
+      "id": "9a641f4f-7976-4a56-b4b3-d50bfef3b8fe",
+      "name": "Wait for All Sheet Data",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "={{ $('Config - Spreadsheet IDs').first().json.COST_SPREADSHEET_ID }}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "={{ $('Config - Spreadsheet IDs').first().json.COST_SHEET }}",
+          "mode": "name"
+        },
+        "options": {
+          "dataLocationOnSheet": {
+            "values": {
+              "rangeDefinition": "specifyRangeA1",
+              "range": "F2:F"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1776,
+        1600
+      ],
+      "id": "b9b54c0b-89f7-413e-b323-a5fef86430cd",
+      "name": "Read Cost - Fuel F",
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "a4Xw1y7SaDpe3N5m",
+          "name": "dts-n8n"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "={{ $('Config - Spreadsheet IDs').first().json.COST_SPREADSHEET_ID }}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "={{ $('Config - Spreadsheet IDs').first().json.COST_SHEET }}",
+          "mode": "name"
+        },
+        "options": {
+          "dataLocationOnSheet": {
+            "values": {
+              "rangeDefinition": "specifyRangeA1",
+              "range": "G3:H"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1776,
+        1744
+      ],
+      "id": "e9efb42f-edf9-4b94-9a72-c0401decd63e",
+      "name": "Read Cost - Base Labor G:H",
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "a4Xw1y7SaDpe3N5m",
+          "name": "dts-n8n"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "={{ $('Config - Spreadsheet IDs').first().json.COST_SPREADSHEET_ID }}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "={{ $('Config - Spreadsheet IDs').first().json.COST_SHEET }}",
+          "mode": "name"
+        },
+        "options": {
+          "dataLocationOnSheet": {
+            "values": {
+              "rangeDefinition": "specifyRangeA1",
+              "range": "I3:J"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1776,
+        1872
+      ],
+      "id": "304bd044-85ec-4879-a2cb-0deb3c1e8ab8",
+      "name": "Read Cost - Pickup Trip I:J",
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "a4Xw1y7SaDpe3N5m",
+          "name": "dts-n8n"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "={{ $('Config - Spreadsheet IDs').first().json.COST_SPREADSHEET_ID }}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "={{ $('Config - Spreadsheet IDs').first().json.COST_SHEET }}",
+          "mode": "name"
+        },
+        "options": {
+          "dataLocationOnSheet": {
+            "values": {
+              "rangeDefinition": "specifyRangeA1",
+              "range": "K3:L"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1776,
+        2016
+      ],
+      "id": "5515e64f-295f-4d30-8a02-b53992ae2226",
+      "name": "Read Cost - 6W Trip K:L",
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "a4Xw1y7SaDpe3N5m",
+          "name": "dts-n8n"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "={{ $('Config - Spreadsheet IDs').first().json.COST_SPREADSHEET_ID }}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "={{ $('Config - Spreadsheet IDs').first().json.COST_SHEET }}",
+          "mode": "name"
+        },
+        "options": {
+          "dataLocationOnSheet": {
+            "values": {
+              "rangeDefinition": "specifyRangeA1",
+              "range": "M3:N"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1776,
+        2160
+      ],
+      "id": "d311372b-db4a-4ca9-a422-f2f49f937134",
+      "name": "Read Cost - Trailer Trip M:N",
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "a4Xw1y7SaDpe3N5m",
+          "name": "dts-n8n"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "={{ $('Config - Spreadsheet IDs').first().json.COST_SPREADSHEET_ID }}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "={{ $('Config - Spreadsheet IDs').first().json.COST_SHEET }}",
+          "mode": "name"
+        },
+        "options": {
+          "dataLocationOnSheet": {
+            "values": {
+              "rangeDefinition": "specifyRangeA1",
+              "range": "O2:Q"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1776,
+        2304
+      ],
+      "id": "e679e67d-0bed-483a-821c-3284d7d53d78",
+      "name": "Read Cost - Toll O:Q",
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "a4Xw1y7SaDpe3N5m",
+          "name": "dts-n8n"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "weeks",
+              "triggerAtDay": [
+                6
+              ],
+              "triggerAtHour": 6
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        1200,
+        1440
+      ],
+      "id": "fcbd07ee-0952-42c5-9828-a9703509c2d4",
+      "name": "Saturday 06:00 BKK"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.errorTrigger",
+      "typeVersion": 1,
+      "position": [
+        1184,
+        720
+      ],
+      "id": "6cbb2e16-4246-441c-bfda-ee7c48227f70",
+      "name": "Error Trigger"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://ntfy.sh/tpi-err-n8n-5697b86b-c202-46c6-aba0-132a5d5f1641",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Title",
+              "value": "n8n Workflow Error"
+            },
+            {
+              "name": "Priority",
+              "value": "high"
+            },
+            {
+              "name": "Tags",
+              "value": "warning"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "text/plain",
+        "body": "={{ \"❌ n8n Workflow Error\\n\\nWorkflow: \" + ($json.workflow?.name ?? \"FM-DQM-002\") + \"\\nNode: \" + ($json.execution?.lastNodeExecuted ?? \"Unknown\") + \"\\nError: \" + ($json.execution?.error?.message ?? $json.error?.message ?? \"Unknown error\") + \"\\nExecution ID: \" + ($json.execution?.id ?? \"-\") + \"\\nเวลา: \" + $now.toFormat('dd/MM/yyyy HH:mm:ss') }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        1456,
+        560
+      ],
+      "id": "6cc52cd1-e0ce-48d7-bb3d-b13aa3d828d7",
+      "name": "err-ntfy",
+      "retryOnFail": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.line.me/v2/bot/message/push",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer oi8iWesT6LfWpBeUiiGcl2MDqRoui2c1oWpH9NnOOcDvjqdeYV2hsvyLHOHmUQyFYDr35gOI93l7QKa6UMoKLbstEyfJHHoRJyi0LN71gl5bkM+I1R06GWOKbpjbYhflH6VZImk/9yh/S7Zl8wvG1wdB04t89/1O/w1cDnyilFU="
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ { \"to\": \"C306ebbefc8c3bcc6fc91816da248a3e9\", \"messages\": [ { \"type\": \"text\", \"text\": \"❌ n8n Workflow Error\\n\\nWorkflow: \" + ($json.workflow?.name ?? \"FM-DQM-002\") + \"\\nNode: \" + ($json.execution?.lastNodeExecuted ?? \"Unknown\") + \"\\nError: \" + ($json.execution?.error?.message ?? $json.error?.message ?? \"Unknown error\") + \"\\nExecution ID: \" + ($json.execution?.id ?? \"-\") + \"\\nเวลา: \" + $now.toFormat('dd/MM/yyyy HH:mm:ss') } ] } }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        1456,
+        720
+      ],
+      "id": "66d4b075-0e9c-4bc0-933b-01c3e2fbc76f",
+      "name": "err-line",
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 2000,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "const cfg = $('Config - Spreadsheet IDs').first().json;\n\nconst rowsFrom = (name) => $(name).all().map(x => x.json || {}).filter(x => Object.keys(x).length > 0);\nconst orders = rowsFrom('Read Orders A:Q');\nconst history = rowsFrom('Read History E:G');\nconst costMain = rowsFrom('Read Cost - Account Mileage');\nconst costFuel = rowsFrom('Read Cost - Fuel F');\nconst costBaseLabor = rowsFrom('Read Cost - Base Labor G:H');\nconst costPickupTrip = rowsFrom('Read Cost - Pickup Trip I:J');\nconst costSixTrip = rowsFrom('Read Cost - 6W Trip K:L');\nconst costTrailerTrip = rowsFrom('Read Cost - Trailer Trip M:N');\nconst costToll = rowsFrom('Read Cost - Toll O:Q');\nconst carRows = rowsFrom('Read CAR_DATA A:C');\n\nconst CANON = {\n  PICKUP: 'รถกระบะ 4 ล้อ',\n  SIX: 'รถบรรทุก 6 ล้อ',\n  TRAILER: 'รถบรรทุกพ่วง (6ล้อ+6ล้อ)',\n};\nconst TYPE_RANK = { PICKUP: 1, SIX: 2, TRAILER: 3 };\nconst SPEED = {\n  PICKUP: Number(cfg.SPEED_PICKUP_KMH),\n  SIX: Number(cfg.SPEED_6W_KMH),\n  TRAILER: Number(cfg.SPEED_TRAILER_KMH),\n};\nconst MAX_DAILY_HOURS = Number(cfg.MAX_DAILY_HOURS || 8);\nconst MAX_TRIPS_PER_VEHICLE_PER_DAY = Number(cfg.MAX_TRIPS_PER_VEHICLE_PER_DAY || 3);\nconst DAY_START_MIN = Number(cfg.DAY_START_HOUR || 8) * 60;\nconst DAY_END_MIN = DAY_START_MIN + MAX_DAILY_HOURS * 60;\nconst EPS = 1e-9;\n\nfunction cleanText(v) {\n  return String(v ?? '')\n    .normalize('NFC')\n    .replace(/\\u0E4D\\u0E32/g, '\\u0E33')\n    .replace(/\\u00A0/g, ' ')\n    .replace(/[‐‑‒–—−]/g, '-')\n    .replace(/\\s+/g, ' ')\n    .trim();\n}\nfunction norm(v) {\n  return cleanText(v).toLowerCase();\n}\nfunction normAccount(v) {\n  return norm(v)\n    .replace(/\\s*([,|/()])\\s*/g, '$1')\n    .replace(/\\.+$/g, '')\n    .trim();\n}\nfunction normPlate(v) {\n  return cleanText(v).replace(/\\s+/g, '').toUpperCase();\n}\nfunction toNumber(v) {\n  if (typeof v === 'number') return Number.isFinite(v) ? v : null;\n  const s = cleanText(v).replace(/,/g, '');\n  if (!s || s === '-' || s === '—') return null;\n  const n = Number(s);\n  return Number.isFinite(n) ? n : null;\n}\nfunction findKey(obj, needles) {\n  const ks = Object.keys(obj || {});\n  for (const needle of needles) {\n    const n = norm(needle);\n    const found = ks.find(k => norm(k).includes(n));\n    if (found) return found;\n  }\n  return null;\n}\nfunction getVal(obj, needles) {\n  const k = findKey(obj, needles);\n  return k ? obj[k] : undefined;\n}\nfunction uniq(arr) {\n  return [...new Set(arr.filter(v => cleanText(v) !== '').map(v => cleanText(v)))];\n}\nfunction pad2(n) { return String(n).padStart(2, '0'); }\nfunction dateKeyUTC(d) {\n  return `${d.getUTCFullYear()}-${pad2(d.getUTCMonth()+1)}-${pad2(d.getUTCDate())}`;\n}\nfunction addDaysUTC(d, days) {\n  const x = new Date(d.getTime());\n  x.setUTCDate(x.getUTCDate() + days);\n  return x;\n}\nfunction parseDateKey(v) {\n  if (v instanceof Date && !isNaN(v)) return dateKeyUTC(v);\n  if (typeof v === 'number' && Number.isFinite(v)) {\n    const ms = Date.UTC(1899, 11, 30) + Math.round(v) * 86400000;\n    return dateKeyUTC(new Date(ms));\n  }\n  const s = cleanText(v);\n  if (!s) return null;\n  let m = s.match(/^(\\d{1,2})[\\/-](\\d{1,2})[\\/-](\\d{2,4})/);\n  if (m) {\n    let y = Number(m[3]);\n    if (y < 100) y += 2000;\n    if (y > 2400) y -= 543;\n    const mo = Number(m[2]), da = Number(m[1]);\n    const d = new Date(Date.UTC(y, mo - 1, da));\n    return isNaN(d) ? null : dateKeyUTC(d);\n  }\n  m = s.match(/^(\\d{4})-(\\d{1,2})-(\\d{1,2})/);\n  if (m) {\n    let y = Number(m[1]);\n    if (y > 2400) y -= 543;\n    const d = new Date(Date.UTC(y, Number(m[2]) - 1, Number(m[3])));\n    return isNaN(d) ? null : dateKeyUTC(d);\n  }\n  const d = new Date(s);\n  return isNaN(d) ? null : dateKeyUTC(d);\n}\nfunction bkkNowDate() {\n  const now = new Date(Date.now() + 7 * 3600 * 1000);\n  return new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()));\n}\nfunction bkkTimestamp() {\n  const now = new Date(Date.now() + 7 * 3600 * 1000);\n  return `${dateKeyUTC(now)} ${pad2(now.getUTCHours())}:${pad2(now.getUTCMinutes())}:${pad2(now.getUTCSeconds())}`;\n}\nfunction minutesToHHMM(mins) {\n  const m = Math.max(0, Math.round(mins));\n  const h = Math.floor(m / 60) % 24;\n  return `${pad2(h)}:${pad2(m % 60)}`;\n}\nfunction round(n, digits = 2) {\n  const p = 10 ** digits;\n  return Math.round((Number(n) + Number.EPSILON) * p) / p;\n}\nfunction vehicleTypeKey(v) {\n  const s = norm(v);\n  if (!s) return null;\n  if (s.includes('พ่วง')) return 'TRAILER';\n  if (s.includes('6 ล้อ') || s.includes('6ล้อ')) return 'SIX';\n  if (s.includes('กระบะ') || s.includes('4 ล้อ') || s.includes('4ล้อ')) return 'PICKUP';\n  return null;\n}\nfunction capacityFor(typeKey, volumeMl) {\n  if (!Number.isFinite(volumeMl)) return null;\n  if (volumeMl >= 100 && volumeMl <= 350) {\n    return typeKey === 'PICKUP' ? 8000 : typeKey === 'SIX' ? 35000 : typeKey === 'TRAILER' ? 70000 : null;\n  }\n  if (volumeMl >= 351 && volumeMl <= 700) {\n    return typeKey === 'PICKUP' ? 5500 : typeKey === 'SIX' ? 28000 : typeKey === 'TRAILER' ? 56000 : null;\n  }\n  if (volumeMl >= 701 && volumeMl <= 1000) {\n    return typeKey === 'PICKUP' ? 4000 : typeKey === 'SIX' ? 24000 : typeKey === 'TRAILER' ? 48000 : null;\n  }\n  return null;\n}\nfunction extractVolumeMl(productName, productCode) {\n  const name = cleanText(productName);\n  const first = name.split('|')[0];\n  let m = first.match(/(\\d+(?:\\.\\d+)?)\\s*(?:ลิตร|litre|liter|l)\\b/i);\n  if (m) {\n    const x = Number(m[1]);\n    if (Number.isFinite(x) && x > 0 && x <= 10) return Math.round(x * 1000);\n  }\n  m = first.match(/(?:^|\\D)(\\d{3,4})(?:\\D|$)/);\n  if (m) {\n    const x = Number(m[1]);\n    if (x >= 100 && x <= 2000) return x;\n  }\n  const code = cleanText(productCode);\n  const matches = [...code.matchAll(/(?:^|[-_/])(\\d{3,4})(?=[-_/]|$)/g)].map(x => Number(x[1]));\n  const x = matches.find(x => x >= 100 && x <= 2000);\n  return x ?? null;\n}\nfunction costOf(cost, typeKey) {\n  return typeKey === 'PICKUP' ? cost.pickup : typeKey === 'SIX' ? cost.six : typeKey === 'TRAILER' ? cost.trailer : null;\n}\nfunction loadOneTrip(lines, typeKey) {\n  let fraction = 0;\n  let total = 0;\n  const allocations = [];\n  for (const line of lines) {\n    if (line.remaining <= 0) continue;\n    const cap = capacityFor(typeKey, line.volumeMl);\n    if (!cap) return { total: 0, allocations: [], fraction: 0 };\n    const freeFraction = Math.max(0, 1 - fraction);\n    if (freeFraction <= EPS) break;\n    let roomQty = Math.floor(freeFraction * cap + EPS);\n    if (roomQty <= 0 && freeFraction > EPS) roomQty = 1;\n    const take = Math.min(line.remaining, roomQty);\n    if (take <= 0) continue;\n    allocations.push({ line, qty: take, capacity: cap });\n    fraction += take / cap;\n    total += take;\n    if (fraction >= 1 - EPS) break;\n  }\n  return { total, allocations, fraction };\n}\nfunction remainingQty(lines) {\n  return lines.reduce((s, x) => s + Math.max(0, x.remaining), 0);\n}\nfunction applyAllocations(allocations) {\n  for (const a of allocations) a.line.remaining -= a.qty;\n}\nfunction fieldByExactOrContains(row, exacts, contains = []) {\n  for (const k of Object.keys(row || {})) {\n    const nk = norm(k);\n    if (exacts.some(x => nk === norm(x))) return row[k];\n  }\n  for (const k of Object.keys(row || {})) {\n    const nk = norm(k);\n    if (contains.some(x => nk.includes(norm(x)))) return row[k];\n  }\n  return undefined;\n}\n\n// ---- Plan week: next Monday through next Saturday in Bangkok ----\n// PRODUCTION: use the actual Bangkok date.\n// TEST/DEMO: when USE_TEST=true, use TEST_BASE_DATE instead.\n// Example TEST_BASE_DATE = 05/08/2026 -> plan 03/08/2026 through 08/08/2026.\nconst useTest = cfg.USE_TEST === true || norm(cfg.USE_TEST) === 'true';\n\nfunction dateFromKeyUTC(key) {\n  const m = String(key || '').match(/^(\\d{4})-(\\d{2})-(\\d{2})$/);\n  if (!m) return null;\n  return new Date(Date.UTC(Number(m[1]), Number(m[2]) - 1, Number(m[3])));\n}\n\nlet planningBaseDate = bkkNowDate();\nlet planningBaseDateKey = dateKeyUTC(planningBaseDate);\n\nif (useTest) {\n  const testDateRaw = cleanText(cfg.TEST_BASE_DATE);\n  if (!testDateRaw) {\n    throw new Error('USE_TEST=true แต่ TEST_BASE_DATE ว่าง กรุณากำหนดวันที่ เช่น 05/08/2026');\n  }\n\n  const parsedTestDateKey = parseDateKey(testDateRaw);\n  if (!parsedTestDateKey) {\n    throw new Error(`TEST_BASE_DATE ไม่ถูกต้อง: \"${testDateRaw}\" กรุณาใช้รูปแบบ DD/MM/YYYY เช่น 05/08/2026`);\n  }\n\n  planningBaseDate = dateFromKeyUTC(parsedTestDateKey);\n  planningBaseDateKey = parsedTestDateKey;\n}\n\nconst jsDay = planningBaseDate.getUTCDay(); // 0 Sun ... 6 Sat\nconst isoDay = jsDay === 0 ? 7 : jsDay;\n\n// Plan the CURRENT week: Monday through Saturday.\nconst weekStart = addDaysUTC(planningBaseDate, 1 - isoDay);\nconst weekEnd = addDaysUTC(weekStart, 5);\nconst weekStartKey = dateKeyUTC(weekStart);\nconst weekEndKey = dateKeyUTC(weekEnd);\nconst planWeek = `${weekStartKey}..${weekEndKey}`;\nconst generatedAt = bkkTimestamp();\nconst sourceMode = useTest ? 'TEST' : 'PRODUCTION';\n\n// ---- CAR_DATA: all rows map historical plate -> type; only status=open is schedulable ----\nconst carTypeByPlate = new Map();\nconst activeVehicles = [];\nfor (const r of carRows) {\n  const id = cleanText(fieldByExactOrContains(r, ['id'], ['id']));\n  const rawType = cleanText(fieldByExactOrContains(r, ['type'], ['type']));\n  const status = norm(fieldByExactOrContains(r, ['status'], ['status']));\n  const driver = cleanText(fieldByExactOrContains(r, ['driver'], ['driver']));\n  const typeKey = vehicleTypeKey(rawType);\n  if (!id || !typeKey) continue;\n  carTypeByPlate.set(normPlate(id), typeKey);\n  if (status === 'open') {\n    activeVehicles.push({\n      id,\n      driver,\n      typeKey,\n      type: CANON[typeKey],\n    });\n  }\n}\n\n// ---- History: owned vehicle types + special historical delivery methods per customer ----\nconst historyByAccount = new Map();\nfunction ensureHistory(accountKey) {\n  if (!historyByAccount.has(accountKey)) {\n    historyByAccount.set(accountKey, {\n      hasHistory: false,\n      ownedTypes: new Set(),\n      specialMethods: new Set(),\n      unmatchedPlates: new Set(),\n    });\n  }\n  return historyByAccount.get(accountKey);\n}\nfor (const r of history) {\n  const account = cleanText(getVal(r, ['Account Name', 'ชื่อบริษัทลูกค้า']));\n  if (!account) continue;\n  const key = normAccount(account);\n  const h = ensureHistory(key);\n  h.hasHistory = true;\n\n  const plate = cleanText(getVal(r, ['Truck Plate', 'ทะเบียนรถ']));\n  if (!plate) continue;\n  const plateNorm = norm(plate);\n\n  if (plateNorm.includes('ลูกค้ารับเอง')) {\n    h.specialMethods.add('ลูกค้ารับเอง');\n    continue;\n  }\n  if (plateNorm.includes('รถบรรทุกรับจ้าง')) {\n    h.specialMethods.add('รถบรรทุกรับจ้าง');\n    continue;\n  }\n\n  const typeKey = carTypeByPlate.get(normPlate(plate));\n  if (typeKey) h.ownedTypes.add(typeKey);\n  else h.unmatchedPlates.add(plate);\n}\n\nfunction resolveHistory(accountKey) {\n  const h = historyByAccount.get(accountKey);\n\n  // No history at all = new customer/destination data.\n  // Per business rule, all 3 vehicle types are allowed but explicitly marked as NEW.\n  if (!h || !h.hasHistory) {\n    return {\n      hasHistory: false,\n      allowed: new Set(['PICKUP', 'SIX', 'TRAILER']),\n      specialMethods: new Set(),\n      unmatchedPlates: new Set(),\n      status: 'NEW_DATA_ALL_TYPES_ALLOWED',\n      note: 'ข้อมูลใหม่: ไม่พบประวัติใน FM-DLW-008 จึงอนุญาตรถทั้ง 3 ประเภท',\n    };\n  }\n\n  if (h.ownedTypes.size > 0) {\n    const specialText = [...h.specialMethods].join(', ');\n    return {\n      hasHistory: true,\n      allowed: new Set(h.ownedTypes),\n      specialMethods: new Set(h.specialMethods),\n      unmatchedPlates: new Set(h.unmatchedPlates),\n      status: specialText ? `PASS | ${specialText}` : 'PASS',\n      note: specialText ? `พบประวัติพิเศษใน FM-DLW-008: ${specialText}` : '',\n    };\n  }\n\n  if (h.specialMethods.size > 0) {\n    const specialText = [...h.specialMethods].join(', ');\n    return {\n      hasHistory: true,\n      allowed: new Set(),\n      specialMethods: new Set(h.specialMethods),\n      unmatchedPlates: new Set(h.unmatchedPlates),\n      status: specialText,\n      note: `FM-DLW-008 ระบุ ${specialText} แต่ไม่มีทะเบียนรถบริษัทที่จับคู่กับ CAR_DATA จึงไม่เดาประเภทรถ`,\n    };\n  }\n\n  return {\n    hasHistory: true,\n    allowed: new Set(),\n    specialMethods: new Set(),\n    unmatchedPlates: new Set(h.unmatchedPlates),\n    status: 'HISTORY_PLATE_NOT_IN_CAR_DATA',\n    note: `พบประวัติ FM-DLW-008 แต่ทะเบียนรถไม่พบใน CAR_DATA: ${[...h.unmatchedPlates].join(', ')}`,\n  };\n}\n\n// ---- Cost table: read SD-DLW-006 from clean sub-ranges and join by actual row_number ----\n// Source layout from SD-DLW-006:\n// B:C = Account + Mileage (header row 2)\n// F = Fuel cost (header row 2)\n// G:H = Base labor Driver/Helper (header row 3)\n// I:J = Pickup trip Driver/Helper (header row 3)\n// K:L = 6-wheel trip Driver/Helper (header row 3)\n// M:N = Trailer trip Driver/Helper (header row 3)\n// O:Q = Toll/extra by Pickup, 6-wheel, Trailer (header row 2)\n//\n// Final transport cost is calculated only from these Google Sheets node values:\n// Pickup  = F + G + H + I + J + O\n// 6-wheel = F + G + H + K + L + P\n// Trailer = F + G + H + M + N + Q\nfunction rowsBySheetRow(rows) {\n  const m = new Map();\n  for (const r of rows) {\n    const rowNo = toNumber(r.row_number);\n    if (!rowNo) continue;\n    m.set(rowNo, r);\n  }\n  return m;\n}\nfunction numericValues(r) {\n  return Object.entries(r || {})\n    .filter(([k]) => k !== 'row_number')\n    .map(([, v]) => toNumber(v))\n    .filter(v => v !== null);\n}\nfunction numByKey(r, needles, fallbackIndex = null) {\n  for (const [k, v] of Object.entries(r || {})) {\n    if (k === 'row_number') continue;\n    const nk = norm(k);\n    if (needles.some(n => nk.includes(norm(n)))) {\n      return toNumber(v) ?? 0;\n    }\n  }\n  const vals = numericValues(r);\n  return fallbackIndex !== null && vals[fallbackIndex] !== undefined ? vals[fallbackIndex] : 0;\n}\n\nconst mainByRow = rowsBySheetRow(costMain);\nconst fuelByRow = rowsBySheetRow(costFuel);\nconst laborByRow = rowsBySheetRow(costBaseLabor);\nconst pickupByRow = rowsBySheetRow(costPickupTrip);\nconst sixByRow = rowsBySheetRow(costSixTrip);\nconst trailerByRow = rowsBySheetRow(costTrailerTrip);\nconst tollByRow = rowsBySheetRow(costToll);\n\n// Fixed Bottle Per Pack master copied from SD-DBM-003.\nconst FIXED_BOTTLE_PER_PACK = Object.freeze({\n  \"AN-320-CC\": 198,\n  \"AN-350-CC\": 162,\n  \"AP-380-CC\": 145,\n  \"AQ-1000-CC\": 105,\n  \"AQ-500-CC\": 136,\n  \"AR-1000-CC\": 105,\n  \"BI-250-CC\": 200,\n  \"BI-370-CC\": 145,\n  \"BK-320-CC\": 180,\n  \"BL-400-CC\": 160,\n  \"BM-1000-CC\": 40,\n  \"BM-220-CC\": 228,\n  \"BM-500-CC\": 170,\n  \"BR-310-CC\": 181,\n  \"BR-330-CC\": 160,\n  \"BR-500-CC\": 160,\n  \"BS-500-CC\": 150,\n  \"BW-330-CC\": 153,\n  \"BW-500-CC\": 160,\n  \"CH-380-CC\": 145,\n  \"CL-330-CC\": 153,\n  \"CL-400-CC\": 145,\n  \"CL-550-CC\": 120,\n  \"CM-320-CC\": 171,\n  \"CM-350-CC\": 160,\n  \"CM-600-CC\": 112,\n  \"CN-235-CC\": 80,\n  \"CO-1000-CC-V1\": 105,\n  \"CO-1000-CC-V2\": 100,\n  \"CT-1500-CC-V1\": 70,\n  \"CT-1500-CC-V2\": 70,\n  \"CT-600-CC-V2\": 144,\n  \"CTR-330-CC\": 153,\n  \"CTR-330-CC-V2\": 181,\n  \"CTR-350-CC\": 179,\n  \"CTR-350-CC-V1\": 170,\n  \"DD-500-CC\": 144,\n  \"DS-435-CC\": 153,\n  \"DS-740-CC\": 105,\n  \"EM-330-CC-V1\": 200,\n  \"EM-330-CC-V2\": 200,\n  \"EM-330-CC-V3\": 200,\n  \"FJ-500-CC\": 128,\n  \"FT-500-CC\": 144,\n  \"GB-250-CC\": 220,\n  \"HM-2000-CC\": 55,\n  \"HO-1500-CC\": 70,\n  \"HO-600-CC\": 120,\n  \"ID-1000-CC\": 35,\n  \"ID-180-CC\": 137,\n  \"ID-180-WH\": 137,\n  \"ID-250-CC\": 220,\n  \"ID-350-CC-V1\": 145,\n  \"ID-350-CC-V2\": 170,\n  \"ID-500-CC-V1\": 128,\n  \"ID-500-CC-V2\": 153,\n  \"ID-600-CC\": 120,\n  \"IN-465-CC\": 153,\n  \"JJ-350-CC\": 198,\n  \"JM-1000-CC\": 105,\n  \"KR-150-CC\": 120,\n  \"KR-200-CC\": 60,\n  \"KR-220-CC\": 60,\n  \"KR-250-CC\": 60,\n  \"KS-450-CC\": 128,\n  \"KS-450-CC-V2\": 128,\n  \"LA-1000-CC\": 105,\n  \"LC-1500-CC\": 40,\n  \"LC-330-CC\": 153,\n  \"LC-550-CC\": 120,\n  \"LC-550-GG\": 120,\n  \"LS-1000-CC\": 90,\n  \"LS-250-CC\": 324,\n  \"LT-1000-CC\": 98,\n  \"MB-330-CC\": 134,\n  \"MC-500-CC\": 153,\n  \"MF-1500-CC\": 70,\n  \"MF-500-CC\": 128,\n  \"MI-1500-CC\": 70,\n  \"MI-500-CC\": 128,\n  \"MK-1000-CC\": 95,\n  \"MU-350-CC\": 179,\n  \"NB-1000-CC\": 105,\n  \"NB-250-CC\": 220,\n  \"NB-300-CC\": 180,\n  \"NB-500-CC\": 128,\n  \"NJ-600-CC\": 160,\n  \"NR-500-CC\": 153,\n  \"NT-1500-CC\": 70,\n  \"NT-600-CC\": 145,\n  \"OB-330-CC-V1\": 198,\n  \"OB-330-CC-V2\": 198,\n  \"OB-500-CC-V1\": 160,\n  \"OB-500-CC-V2\": 160,\n  \"OL-1000-CC\": 95,\n  \"OL-250-CC\": 220,\n  \"OX-1500-CC\": 40,\n  \"OX-330-CC\": 153,\n  \"OX-600-CC\": 145,\n  \"PFF-380-CC\": 145,\n  \"PFF-380-CC-V2\": 181,\n  \"PL-1000-CC\": 105,\n  \"PL-250-CC\": 198,\n  \"PN-330-CC\": 160,\n  \"PS-1000-CC\": 100,\n  \"PS-500-CC\": 144,\n  \"QQ-300-CC\": 207,\n  \"RK-435-CC\": 145,\n  \"RO-550-CC\": 136,\n  \"SC-300-CC\": 171,\n  \"SF-380-CC\": 171,\n  \"SG-1000-CC\": 100,\n  \"SK-700-CC\": 119,\n  \"SP-320-CC\": 162,\n  \"SP-400-CC\": 145,\n  \"ST-1000-CC\": 95,\n  \"SW-400-CC\": 162,\n  \"TA-320-CC\": 171,\n  \"TG-200-CC\": 396,\n  \"TG-430-CC\": 153,\n  \"TI-1000-CC\": 100,\n  \"TI-1500-CC\": 70,\n  \"TI-500-CC\": 144,\n  \"TI-500-CC-V2\": 144,\n  \"TP-500-CC\": 136,\n  \"TQ-700-CC\": 136,\n  \"TR-450-CC\": 153,\n  \"TS-1000-CC\": 96,\n  \"TS-250-CC\": 220,\n  \"TS-290-CC\": 220,\n  \"TS-400-CC-V1\": 145,\n  \"TS-400-CC-V2\": 145,\n  \"TS-400-CC-V3\": 145,\n  \"TS-450-CC\": 170,\n  \"TW-730-CC\": 128,\n  \"VC-350-CC\": 153,\n  \"VL-320-CC\": 181,\n  \"VN-500-CC\": 153,\n  \"VT-1000-CC\": 100,\n  \"VT-2000-CC-V2\": 56,\n  \"VV-1500-CC\": 70,\n  \"VV-600-CC\": 145,\n  \"WF-270-CC\": 133,\n  \"WL-500-CC-V1\": 170,\n  \"WR-320-CC\": 190,\n  \"ZM-350-CC\": 145,\n});\n\nconst bottlePerPackByCode = new Map(\n  Object.entries(FIXED_BOTTLE_PER_PACK).map(([productCode, bottlePerPack]) => [norm(productCode), bottlePerPack])\n);\nconst ambiguousPackCodes = new Set();\nfunction formatNumber(n) {\n  return Number(n || 0).toLocaleString('en-US', { maximumFractionDigits: 2 });\n}\n\nfunction packDetail(productCode, qty) {\n  const key = norm(productCode);\n  if (!key || ambiguousPackCodes.has(key)) {\n    return 'ไม่สามารถคำนวณแพ็คได้ (ข้อมูลแพ็คซ้ำ/ไม่ชัดเจน)';\n  }\n\n  const bottlePerPack = bottlePerPackByCode.get(key);\n  if (!Number.isFinite(bottlePerPack) || bottlePerPack <= 0) {\n    return 'ไม่พบ Product Code ใน Fixed Pack Master';\n  }\n\n  const q = Number(qty || 0);\n  const fullPacks = Math.floor((q + EPS) / bottlePerPack);\n  const remainder = Math.max(0, q - fullPacks * bottlePerPack);\n  const packsNeeded = remainder > EPS ? fullPacks + 1 : fullPacks;\n\n  if (remainder <= EPS) {\n    return `${formatNumber(packsNeeded)} แพ็ค (${formatNumber(bottlePerPack)} ขวด/แพ็ค)`;\n  }\n\n  return `${formatNumber(packsNeeded)} แพ็ค (${formatNumber(fullPacks)} แพ็คเต็ม + ${formatNumber(remainder)} ขวด, ${formatNumber(bottlePerPack)} ขวด/แพ็ค)`;\n}\n\nfunction tripProductLine(line, qty) {\n  const productName = cleanText(line.productName).split('|')[0].trim();\n  return `${productName} = ${formatNumber(qty)} ขวด = ${packDetail(line.productCode, qty)}`;\n}\n\nconst costRows = [];\nfor (const [rowNo, main] of mainByRow.entries()) {\n  const account = cleanText(getVal(main, ['Account Name', 'ชื่อบริษัทลูกค้า']));\n  if (!account) continue;\n\n  const mileage = toNumber(getVal(main, ['Total Shipping Mileage', 'รวมระยะทางจัดส่งสินค้า']));\n  const fuelRow = fuelByRow.get(rowNo) || {};\n  const laborRow = laborByRow.get(rowNo) || {};\n  const pickupRow = pickupByRow.get(rowNo) || {};\n  const sixRow = sixByRow.get(rowNo) || {};\n  const trailerRow = trailerByRow.get(rowNo) || {};\n  const tollRow = tollByRow.get(rowNo) || {};\n\n  const fuel = numByKey(fuelRow, ['ค่าน้ำมัน'], 0);\n\n  const laborVals = numericValues(laborRow);\n  const baseDriver = numByKey(laborRow, ['คนขับ'], 0);\n  const baseHelper = numByKey(laborRow, ['เด็กรถ'], 1);\n\n  const pickupVals = numericValues(pickupRow);\n  const pickupDriver = numByKey(pickupRow, ['คนขับ'], 0);\n  const pickupHelper = numByKey(pickupRow, ['เด็กรถ'], 1);\n\n  const sixVals = numericValues(sixRow);\n  const sixDriver = numByKey(sixRow, ['คนขับ'], 0);\n  const sixHelper = numByKey(sixRow, ['เด็กรถ'], 1);\n\n  const trailerVals = numericValues(trailerRow);\n  const trailerDriver = numByKey(trailerRow, ['คนขับ'], 0);\n  const trailerHelper = numByKey(trailerRow, ['เด็กรถ'], 1);\n\n  const tollPickup = numByKey(tollRow, ['กระบะ'], 0);\n  const tollSix = numByKey(tollRow, ['6 ล้อ', '6ล้อ'], 1);\n  const tollTrailer = numByKey(tollRow, ['พ่วง'], 2);\n\n  costRows.push({\n    rowNo,\n    account,\n    accountKey: normAccount(account),\n    mileage,\n    pickup: round(fuel + baseDriver + baseHelper + pickupDriver + pickupHelper + tollPickup, 2),\n    six: round(fuel + baseDriver + baseHelper + sixDriver + sixHelper + tollSix, 2),\n    trailer: round(fuel + baseDriver + baseHelper + trailerDriver + trailerHelper + tollTrailer, 2),\n  });\n}\nconst costsByAccount = new Map();\nfor (const c of costRows) {\n  if (!costsByAccount.has(c.accountKey)) costsByAccount.set(c.accountKey, []);\n  costsByAccount.get(c.accountKey).push(c);\n}\nfunction resolveCost(accountKey) {\n  const rows = costsByAccount.get(accountKey) || [];\n  if (rows.length === 0) return { status: 'COST_NOT_FOUND', rows: [] };\n  const sig = new Map();\n  for (const r of rows) {\n    const s = JSON.stringify([r.mileage, r.pickup, r.six, r.trailer]);\n    if (!sig.has(s)) sig.set(s, r);\n  }\n  if (sig.size > 1) return { status: 'COST_AMBIGUOUS', rows };\n  const only = [...sig.values()][0];\n  if (only.mileage === null || !Number.isFinite(only.mileage)) return { status: 'MILEAGE_MISSING', rows };\n  return { status: 'OK', rows, cost: only };\n}\n\n// ---- Filter FM-DSM-001 and group by shipping date + customer ----\nconst groups = new Map();\nfor (const r of orders) {\n  const account = cleanText(getVal(r, ['Account Name', 'ชื่อบริษัทลูกค้า']));\n  const productName = cleanText(getVal(r, ['Product Name', 'ชื่อสินค้า']));\n  const productCode = cleanText(getVal(r, ['Product Code', 'รหัสสินค้า']));\n  const amount = toNumber(getVal(r, ['Amount of Product', 'จำนวนสินค้า']));\n  const production = toNumber(getVal(r, ['Production Status', 'สถานะการผลิตสินค้า']));\n  const shippingStatus = norm(getVal(r, ['Shipping Status', 'สถานะการจัดส่งสินค้า']));\n  const shipDate = parseDateKey(getVal(r, ['Schedule Shipping Date', 'วันที่กำหนดจัดส่งสินค้า']));\n  const po = cleanText(getVal(r, ['PO No.', 'เลขที่ใบสั่งซื้อ']));\n  const so = cleanText(getVal(r, ['SO', 'ใบสั่งขาย']));\n  const sourceRow = toNumber(r.row_number) ?? '';\n\n  if (!account || !productName || !amount || amount <= 0 || production === null || !shipDate) continue;\n  if (shipDate < weekStartKey || shipDate > weekEndKey) continue;\n  if (!(production >= amount)) continue;\n  if (shippingStatus !== 'pending') continue;\n\n  const volumeMl = extractVolumeMl(productName, productCode);\n  const key = `${shipDate}|${normAccount(account)}`;\n  if (!groups.has(key)) {\n    groups.set(key, {\n      shipDate,\n      account,\n      accountKey: normAccount(account),\n      lines: [],\n    });\n  }\n  groups.get(key).lines.push({\n    productName,\n    productCode,\n    qty: Math.round(amount),\n    remaining: Math.round(amount),\n    volumeMl,\n    po,\n    so,\n    sourceRow,\n  });\n}\n\nconst destinations = [...groups.values()].map(g => {\n  const costResolution = resolveCost(g.accountKey);\n  const historyResolution = resolveHistory(g.accountKey);\n  const allowed = historyResolution.allowed;\n  const unsupported = g.lines.filter(x => capacityFor('PICKUP', x.volumeMl) === null);\n  const activeAllowed = activeVehicles.filter(v => allowed.has(v.typeKey));\n  const maxDuration = costResolution.status === 'OK' && allowed.size\n    ? Math.max(...[...allowed].map(t => SPEED[t] > 0 ? costResolution.cost.mileage / SPEED[t] : 0), 0)\n    : 0;\n  return {\n    ...g,\n    costResolution,\n    historyResolution,\n    allowed,\n    activeAllowed,\n    unsupported,\n    totalQty: g.lines.reduce((s, x) => s + x.qty, 0),\n    maxDuration,\n  };\n});\n\n// Most constrained first; for equal constraints, longer/farther work first, then bigger quantity.\ndestinations.sort((a, b) => {\n  const aa = a.allowed.size || 99;\n  const bb = b.allowed.size || 99;\n  if (aa !== bb) return aa - bb;\n  if (Math.abs(b.maxDuration - a.maxDuration) > EPS) return b.maxDuration - a.maxDuration;\n  if (b.totalQty !== a.totalQty) return b.totalQty - a.totalQty;\n  return a.account.localeCompare(b.account, 'th');\n});\n\nconst vehiclesByDay = new Map();\nfunction dayVehicles(dateKey) {\n  if (!vehiclesByDay.has(dateKey)) {\n    vehiclesByDay.set(dateKey, activeVehicles.map(v => ({\n      ...v,\n      availableMin: DAY_START_MIN,\n      travelHours: 0,\n      tripNo: 0,\n    })));\n  }\n  return vehiclesByDay.get(dateKey);\n}\n\nconst output = [];\nfunction baseOutput(d, status) {\n  return {\n    'Plan Key': '',\n    'Generated At': generatedAt,\n    'Source Mode': sourceMode,\n    'Plan Week': planWeek,\n    'Shipping Date': d.shipDate,\n    'Plan Status': status,\n    'Account Name': d.account,\n    'PO No.': uniq(d.lines.map(x => x.po)).join(', '),\n    'SO': uniq(d.lines.map(x => x.so)).join(', '),\n    'Product Codes': uniq(d.lines.map(x => x.productCode)).join(', '),\n    'Products': uniq(d.lines.map(x => cleanText(x.productName).split('|')[0].trim()).filter(Boolean)).join(', '),\n    'Products Detail': d.lines.map(x => `${x.productCode || '-'}: ${x.productName} [${x.qty}]`).join(' | '),\n    'Trip Qty': 0,\n    'Vehicle ID': '',\n    'Driver Name': '',\n    'Vehicle Type': '',\n    'Vehicle Trip No.': '',\n    'Customer Trip No.': '',\n    'Departure Time': '',\n    'Return Time': '',\n    'Travel Hours': '',\n    'Vehicle Daily Hours': '',\n    'Distance (km)': d.costResolution.cost?.mileage ?? '',\n    'Speed (km/h)': '',\n    'Estimated Cost': '',\n    'Cost Source Row': (d.costResolution.rows || []).map(x => x.rowNo).join(','),\n    'Allowed Vehicle Types': [...d.allowed].sort((a,b)=>TYPE_RANK[a]-TYPE_RANK[b]).map(t => CANON[t]).join(', '),\n    'History Check': d.historyResolution.status,\n    'Load Detail': '',\n    'Trip Products Detail': '',\n    'Source Rows': d.lines.map(x => x.sourceRow).filter(Boolean).join(','),\n    'Remaining Qty After Trip': remainingQty(d.lines),\n    'Alert Required': false,\n    'Needs Review': false,\n    'Remark': '',\n  };\n}\nfunction pushIssue(d, status, remark, alertRequired = false) {\n  const o = baseOutput(d, status);\n  o['Plan Key'] = `${planWeek}|${d.shipDate}|${d.accountKey}|ISSUE|${status}`;\n  o['Remaining Qty After Trip'] = remainingQty(d.lines);\n  o['Alert Required'] = alertRequired;\n  o['Needs Review'] = !alertRequired;\n  o['Remark'] = remark;\n  output.push(o);\n}\n\nfor (const d of destinations) {\n  if (d.unsupported.length) {\n    const list = d.unsupported.map(x => `${x.productCode || '-'}=${x.volumeMl ?? 'UNKNOWN'}ml`).join(', ');\n    pushIssue(d, 'UNSUPPORTED_VOLUME', `ไม่มี Capacity Rule สำหรับ: ${list}`, false);\n    continue;\n  }\n  if (d.historyResolution.allowed.size === 0) {\n    if (d.historyResolution.specialMethods.has('ลูกค้ารับเอง')) {\n      const totalQty = remainingQty(d.lines);\n      const o = baseOutput(d, 'CUSTOMER_PICKUP');\n      o['Plan Key'] = `${planWeek}|${d.shipDate}|${d.accountKey}|SPECIAL|CUSTOMER_PICKUP`;\n      o['Trip Qty'] = totalQty;\n      o['Trip Products Detail'] = d.lines.map(x => tripProductLine(x, x.qty)).join(' | ');\n      o['Remaining Qty After Trip'] = 0;\n      o['History Check'] = 'ลูกค้ารับเอง';\n      o['Needs Review'] = false;\n      o['Alert Required'] = false;\n      o['Remark'] = `ลูกค้ารับเอง จำนวนทั้งหมด ${totalQty}`;\n      output.push(o);\n    } else if (d.historyResolution.specialMethods.size > 0) {\n      pushIssue(\n        d,\n        'HISTORY_SPECIAL_METHOD',\n        d.historyResolution.note,\n        false\n      );\n    } else {\n      pushIssue(\n        d,\n        'HISTORY_TYPE_NOT_FOUND',\n        d.historyResolution.note,\n        false\n      );\n    }\n    continue;\n  }\n\n  if (d.costResolution.status !== 'OK') {\n    if (d.costResolution.status === 'COST_AMBIGUOUS') {\n      pushIssue(d, 'COST_AMBIGUOUS', `พบชื่อลูกค้าซ้ำและมีระยะทาง/ค่าใช้จ่ายต่างกันใน SD-DLW-006 rows ${d.costResolution.rows.map(x=>x.rowNo).join(', ')} จึงไม่เดาค่า`, false);\n    } else if (d.costResolution.status === 'MILEAGE_MISSING') {\n      pushIssue(d, 'MILEAGE_MISSING', 'พบลูกค้าใน SD-DLW-006 แต่ไม่มี Total Shipping Mileage จึงคำนวณเวลาเดินทางไม่ได้', false);\n    } else {\n      pushIssue(d, 'COST_NOT_FOUND', 'ไม่พบชื่อลูกค้าใน SD-DLW-006', false);\n    }\n    continue;\n  }\n  if (d.activeAllowed.length === 0) {\n    pushIssue(d, 'NO_OPEN_ALLOWED_VEHICLE', 'ประเภทที่ลูกค้าเคยรับได้ ไม่มีรถ status=open ใน CAR_DATA', true);\n    continue;\n  }\n\n  const dayFleet = dayVehicles(d.shipDate);\n  let customerTripNo = 0;\n  let safety = 0;\n\n  while (remainingQty(d.lines) > 0 && safety++ < 10000) {\n    const before = remainingQty(d.lines);\n    const candidates = [];\n\n    for (const v of dayFleet) {\n      if (!d.allowed.has(v.typeKey)) continue;\n      if (v.tripNo >= MAX_TRIPS_PER_VEHICLE_PER_DAY) continue;\n      const speed = SPEED[v.typeKey];\n      if (!Number.isFinite(speed) || speed <= 0) continue;\n      const durationH = d.costResolution.cost.mileage / speed;\n      const durationMin = durationH * 60;\n      if (durationH > MAX_DAILY_HOURS + EPS) continue;\n      if (v.travelHours + durationH > MAX_DAILY_HOURS + EPS) continue;\n      if (v.availableMin + durationMin > DAY_END_MIN + EPS) continue;\n\n      const load = loadOneTrip(d.lines, v.typeKey);\n      if (load.total <= 0) continue;\n      const tripCost = costOf(d.costResolution.cost, v.typeKey);\n      if (!Number.isFinite(tripCost)) continue;\n      const finishes = load.total >= before;\n      const costPerBottle = tripCost / load.total;\n      candidates.push({ v, speed, durationH, durationMin, load, tripCost, finishes, costPerBottle });\n    }\n\n    if (!candidates.length) break;\n\n    candidates.sort((a, b) => {\n      // If one trip finishes the destination, choose the lowest total trip cost.\n      if (a.finishes !== b.finishes) return a.finishes ? -1 : 1;\n      if (a.finishes && b.finishes && Math.abs(a.tripCost - b.tripCost) > EPS) return a.tripCost - b.tripCost;\n      // Otherwise choose lowest cost per delivered bottle.\n      if (Math.abs(a.costPerBottle - b.costPerBottle) > EPS) return a.costPerBottle - b.costPerBottle;\n      // Prefer earlier available physical vehicle, then smaller type as tie-break.\n      if (Math.abs(a.v.availableMin - b.v.availableMin) > EPS) return a.v.availableMin - b.v.availableMin;\n      return TYPE_RANK[a.v.typeKey] - TYPE_RANK[b.v.typeKey];\n    });\n\n    const c = candidates[0];\n    customerTripNo += 1;\n    c.v.tripNo += 1;\n    const departure = c.v.availableMin;\n    const returnMin = departure + c.durationMin;\n    applyAllocations(c.load.allocations);\n    c.v.availableMin = returnMin;\n    c.v.travelHours += c.durationH;\n\n    const o = baseOutput(d, 'SCHEDULED');\n    o['Plan Key'] = `${planWeek}|${d.shipDate}|${d.accountKey}|TRIP|${customerTripNo}`;\n    o['Trip Qty'] = c.load.total;\n    o['Vehicle ID'] = c.v.id;\n    o['Driver Name'] = c.v.driver || '';\n    o['Vehicle Type'] = c.v.type;\n    o['Vehicle Trip No.'] = c.v.tripNo;\n    o['Customer Trip No.'] = customerTripNo;\n    o['Departure Time'] = minutesToHHMM(departure);\n    o['Return Time'] = minutesToHHMM(returnMin);\n    o['Travel Hours'] = round(c.durationH, 2);\n    o['Vehicle Daily Hours'] = round(c.v.travelHours, 2);\n    o['Distance (km)'] = d.costResolution.cost.mileage;\n    o['Speed (km/h)'] = c.speed;\n    o['Estimated Cost'] = c.tripCost;\n    o['Cost Source Row'] = d.costResolution.cost.rowNo;\n    o['History Check'] = d.historyResolution.status;\n    o['Load Detail'] = c.load.allocations.map(a => `${a.line.productCode || '-'}:${a.qty} (${a.line.volumeMl}ml)`).join(' | ');\n    o['Trip Products Detail'] = c.load.allocations.map(a => tripProductLine(a.line, a.qty)).join(' | ');\n    o['Source Rows'] = uniq(c.load.allocations.map(a => a.line.sourceRow)).join(',');\n    o['Remaining Qty After Trip'] = remainingQty(d.lines);\n    o['Remark'] = [`ใช้ระยะทางรวม ${d.costResolution.cost.mileage} km / ${c.speed} km/h`, d.historyResolution.note].filter(Boolean).join(' | ');\n    output.push(o);\n  }\n\n  if (remainingQty(d.lines) > 0) {\n    const anyAllowedSpeed = [...d.allowed].some(t => Number.isFinite(SPEED[t]) && SPEED[t] > 0);\n    const allTripsTooLong = [...d.allowed].every(t => !Number.isFinite(SPEED[t]) || SPEED[t] <= 0 || d.costResolution.cost.mileage / SPEED[t] > MAX_DAILY_HOURS + EPS);\n    if (!anyAllowedSpeed) {\n      pushIssue(d, 'SPEED_CONFIG_MISSING', 'ไม่มีค่าความเร็วที่ใช้งานได้สำหรับประเภทรถที่ลูกค้าอนุญาต', false);\n    } else if (allTripsTooLong) {\n      pushIssue(d, 'TRIP_TIME_EXCEEDS_DAY', `ระยะทาง/ความเร็วทำให้เที่ยวเดียวใช้เวลาเกิน ${MAX_DAILY_HOURS} ชั่วโมง`, true);\n    } else {\n      pushIssue(d, 'DAILY_CAPACITY_EXCEEDED', `หลังจัดรถตั้งแต่ ${minutesToHHMM(DAY_START_MIN)} จำกัดรถละ ${MAX_DAILY_HOURS} ชั่วโมง และไม่เกิน ${MAX_TRIPS_PER_VEHICLE_PER_DAY} รอบ/คัน/วัน ยังเหลือ ${remainingQty(d.lines)} ขวด`, true);\n    }\n  }\n}\n\n// Sort output for an operational dispatch view.\noutput.sort((a, b) => {\n  if (a['Shipping Date'] !== b['Shipping Date']) return String(a['Shipping Date']).localeCompare(String(b['Shipping Date']));\n  const at = a['Departure Time'] || '99:99';\n  const bt = b['Departure Time'] || '99:99';\n  if (at !== bt) return at.localeCompare(bt);\n  if (a['Vehicle ID'] !== b['Vehicle ID']) return String(a['Vehicle ID']).localeCompare(String(b['Vehicle ID']), 'th');\n  return String(a['Account Name']).localeCompare(String(b['Account Name']), 'th');\n});\n\n\n// ---- Fixed demo/operational slots for vehicles with exactly 2 trips in the same day ----\n// Business rule: if one physical vehicle has exactly two SCHEDULED trips on a day,\n// display trip 1 as 08:00-12:00 and trip 2 as 13:00-17:00.\n// Travel Hours remains the calculated travel time from mileage/speed; only the planned clock slots are fixed.\nconst tripsByVehicleDay = new Map();\nfor (const row of output) {\n  if (row['Plan Status'] !== 'SCHEDULED') continue;\n  const vehicleId = cleanText(row['Vehicle ID']);\n  const shipDate = cleanText(row['Shipping Date']);\n  if (!vehicleId || !shipDate) continue;\n  const key = `${shipDate}|${vehicleId}`;\n  if (!tripsByVehicleDay.has(key)) tripsByVehicleDay.set(key, []);\n  tripsByVehicleDay.get(key).push(row);\n}\n\nfor (const trips of tripsByVehicleDay.values()) {\n  if (trips.length !== 2) continue;\n  trips.sort((a, b) => Number(a['Vehicle Trip No.'] || 0) - Number(b['Vehicle Trip No.'] || 0));\n\n  trips[0]['Departure Time'] = '08:00';\n  trips[0]['Return Time'] = '12:00';\n\n  trips[1]['Departure Time'] = '13:00';\n  trips[1]['Return Time'] = '17:00';\n\n  for (const trip of trips) {\n    const fixedNote = 'รถคันนี้มี 2 เที่ยว/วัน: กำหนดเวลา 08:00-12:00 และ 13:00-17:00';\n    trip['Remark'] = trip['Remark'] ? `${trip['Remark']} | ${fixedNote}` : fixedNote;\n  }\n}\n\nreturn output.map(json => ({ json }));\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2480,
+        1920
+      ],
+      "id": "da337af3-8c8f-4ae9-be28-c60b1c8adfc6",
+      "name": "Plan Multi-Trip Delivery"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "={{ $('Config - Spreadsheet IDs').first().json.OUTPUT_SPREADSHEET_ID }}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "={{ $('Config - Spreadsheet IDs').first().json.OUTPUT_SHEET }}",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Plan Key": "={{ $json[\"Plan Key\"] }}",
+            "Generated At": "={{ $json[\"Generated At\"] }}",
+            "Source Mode": "={{ $json[\"Source Mode\"] }}",
+            "Plan Week": "={{ $json[\"Plan Week\"] }}",
+            "Shipping Date": "={{ $json[\"Shipping Date\"] }}",
+            "Plan Status": "={{ $json[\"Plan Status\"] }}",
+            "Account Name": "={{ $json[\"Account Name\"] }}",
+            "PO No.": "={{ $json[\"PO No.\"] }}",
+            "SO": "={{ $json[\"SO\"] }}",
+            "Product Codes": "={{ $json[\"Product Codes\"] }}",
+            "Products": "={{ $json[\"Products\"] }}",
+            "Products Detail": "={{ $json[\"Products Detail\"] }}",
+            "Trip Qty": "={{ $json[\"Trip Qty\"] }}",
+            "Vehicle ID": "={{ $json[\"Vehicle ID\"] }}",
+            "Driver Name": "={{ $json[\"Driver Name\"] }}",
+            "Vehicle Type": "={{ $json[\"Vehicle Type\"] }}",
+            "Vehicle Trip No.": "={{ $json[\"Vehicle Trip No.\"] }}",
+            "Customer Trip No.": "={{ $json[\"Customer Trip No.\"] }}",
+            "Departure Time": "={{ $json[\"Departure Time\"] }}",
+            "Return Time": "={{ $json[\"Return Time\"] }}",
+            "Travel Hours": "={{ $json[\"Travel Hours\"] }}",
+            "Vehicle Daily Hours": "={{ $json[\"Vehicle Daily Hours\"] }}",
+            "Distance (km)": "={{ $json[\"Distance (km)\"] }}",
+            "Speed (km/h)": "={{ $json[\"Speed (km/h)\"] }}",
+            "Estimated Cost": "={{ $json[\"Estimated Cost\"] }}",
+            "Cost Source Row": "={{ $json[\"Cost Source Row\"] }}",
+            "Allowed Vehicle Types": "={{ $json[\"Allowed Vehicle Types\"] }}",
+            "History Check": "={{ $json[\"History Check\"] }}",
+            "Load Detail": "={{ $json[\"Load Detail\"] }}",
+            "Trip Products Detail": "={{ $json[\"Trip Products Detail\"] }}",
+            "Source Rows": "={{ $json[\"Source Rows\"] }}",
+            "Remaining Qty After Trip": "={{ $json[\"Remaining Qty After Trip\"] }}",
+            "Alert Required": "={{ $json[\"Alert Required\"] }}",
+            "Needs Review": "={{ $json[\"Needs Review\"] }}",
+            "Remark": "={{ $json[\"Remark\"] }}"
+          },
+          "matchingColumns": [
+            "Plan Key"
+          ],
+          "schema": [
+            {
+              "id": "Shipping Date",
+              "displayName": "Shipping Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Departure Time",
+              "displayName": "Departure Time",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Return Time",
+              "displayName": "Return Time",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "PO No.",
+              "displayName": "PO No.",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Vehicle ID",
+              "displayName": "Vehicle ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Account Name",
+              "displayName": "Account Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Products",
+              "displayName": "Products",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Products Detail",
+              "displayName": "Products Detail",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Product Codes",
+              "displayName": "Product Codes",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Trip Qty",
+              "displayName": "Trip Qty",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Trip Products Detail",
+              "displayName": "Trip Products Detail",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Driver Name",
+              "displayName": "Driver Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Plan Key",
+              "displayName": "Plan Key",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Generated At",
+              "displayName": "Generated At",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Source Mode",
+              "displayName": "Source Mode",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Remark",
+              "displayName": "Remark",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Plan Week",
+              "displayName": "Plan Week",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Plan Status",
+              "displayName": "Plan Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "SO",
+              "displayName": "SO",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Distance (km)",
+              "displayName": "Distance (km)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Remaining Qty After Trip",
+              "displayName": "Remaining Qty After Trip",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Allowed Vehicle Types",
+              "displayName": "Allowed Vehicle Types",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Vehicle Type",
+              "displayName": "Vehicle Type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Vehicle Trip No.",
+              "displayName": "Vehicle Trip No.",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Customer Trip No.",
+              "displayName": "Customer Trip No.",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Travel Hours",
+              "displayName": "Travel Hours",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Vehicle Daily Hours",
+              "displayName": "Vehicle Daily Hours",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Speed (km/h)",
+              "displayName": "Speed (km/h)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Estimated Cost",
+              "displayName": "Estimated Cost",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Cost Source Row",
+              "displayName": "Cost Source Row",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "History Check",
+              "displayName": "History Check",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Load Detail",
+              "displayName": "Load Detail",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Source Rows",
+              "displayName": "Source Rows",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Alert Required",
+              "displayName": "Alert Required",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Needs Review",
+              "displayName": "Needs Review",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        2688,
+        1920
+      ],
+      "id": "508e4504-7161-4570-ba8f-79942ac71508",
+      "name": "Upsert DELIVERY_PLAN",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "a4Xw1y7SaDpe3N5m",
+          "name": "dts-n8n"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Manual Test": {
+      "main": [
+        [
+          {
+            "node": "Config - Spreadsheet IDs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Config - Spreadsheet IDs": {
+      "main": [
+        [
+          {
+            "node": "Read Orders A:Q",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Read History E:G",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Read Cost - Account Mileage",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Read Cost - Fuel F",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Read Cost - Base Labor G:H",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Read Cost - Pickup Trip I:J",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Read Cost - 6W Trip K:L",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Read Cost - Trailer Trip M:N",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Read Cost - Toll O:Q",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Read CAR_DATA A:C",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Orders A:Q": {
+      "main": [
+        [
+          {
+            "node": "Wait for All Sheet Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read History E:G": {
+      "main": [
+        [
+          {
+            "node": "Wait for All Sheet Data",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Read Cost - Account Mileage": {
+      "main": [
+        [
+          {
+            "node": "Wait for All Sheet Data",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "Read Cost - Fuel F": {
+      "main": [
+        [
+          {
+            "node": "Wait for All Sheet Data",
+            "type": "main",
+            "index": 3
+          }
+        ]
+      ]
+    },
+    "Read Cost - Base Labor G:H": {
+      "main": [
+        [
+          {
+            "node": "Wait for All Sheet Data",
+            "type": "main",
+            "index": 4
+          }
+        ]
+      ]
+    },
+    "Read Cost - Pickup Trip I:J": {
+      "main": [
+        [
+          {
+            "node": "Wait for All Sheet Data",
+            "type": "main",
+            "index": 5
+          }
+        ]
+      ]
+    },
+    "Read Cost - 6W Trip K:L": {
+      "main": [
+        [
+          {
+            "node": "Wait for All Sheet Data",
+            "type": "main",
+            "index": 6
+          }
+        ]
+      ]
+    },
+    "Read Cost - Trailer Trip M:N": {
+      "main": [
+        [
+          {
+            "node": "Wait for All Sheet Data",
+            "type": "main",
+            "index": 7
+          }
+        ]
+      ]
+    },
+    "Read Cost - Toll O:Q": {
+      "main": [
+        [
+          {
+            "node": "Wait for All Sheet Data",
+            "type": "main",
+            "index": 8
+          }
+        ]
+      ]
+    },
+    "Read CAR_DATA A:C": {
+      "main": [
+        [
+          {
+            "node": "Wait for All Sheet Data",
+            "type": "main",
+            "index": 9
+          }
+        ]
+      ]
+    },
+    "Wait for All Sheet Data": {
+      "main": [
+        [
+          {
+            "node": "Plan Multi-Trip Delivery",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Saturday 06:00 BKK": {
+      "main": [
+        [
+          {
+            "node": "Config - Spreadsheet IDs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Error Trigger": {
+      "main": [
+        [
+          {
+            "node": "err-line",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "err-ntfy",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Plan Multi-Trip Delivery": {
+      "main": [
+        [
+          {
+            "node": "Upsert DELIVERY_PLAN",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "0e659437-c78c-49ed-a402-36dff0db1163",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "8b89bacf03b33df343a7dd9f17cf1721598896265238cfb8ad22fd7cae20c33a"
+  },
+  "id": "2LmB98QwYrhu8TZV",
+  "tags": []
+}
