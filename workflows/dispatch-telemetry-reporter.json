@@ -1,5 +1,5 @@
 {
-  "name": "tpi-ai-report-express",
+  "name": "dispatch-telemetry-reporter",
   "nodes": [
     {
       "parameters": {
