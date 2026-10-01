@@ -1,12 +1,11 @@
-# Autonomous Multi-Constraint Logistics Dispatch & Dynamic Telemetry Engine
+# Logistics Dispatch Planning & Reporting
 
 [![n8n](https://img.shields.io/badge/Orchestrator-n8n-EA4B71?style=flat-square&logo=n8n)](https://n8n.io/)
 [![JavaScript](https://img.shields.io/badge/Core-JavaScript%20ES6+-F7DF1E?style=flat-square&logo=javascript)](https://developer.mozilla.org/)
 [![Google Sheets API](https://img.shields.io/badge/Storage-Google%20Sheets%20API-34A853?style=flat-square&logo=googlesheets)](https://developers.google.com/sheets/api)
 [![LINE Messaging API](https://img.shields.io/badge/Alerts-LINE%20Messaging%20API-00C300?style=flat-square&logo=line)](https://developers.line.biz/)
-[![Status](https://img.shields.io/badge/Status-Production%20Active-success?style=flat-square)]()
 
-An automated, event-driven logistics planning and dispatch telemetry engine built with n8n and modern JavaScript algorithms. The system solves the Vehicle Routing and Bin-Packing Problem (VRP/BPP) across heterogeneous bottle packaging inventories, optimizes vehicle selection under cost and driver labor constraints, and pushes real-time shift manifests to field operations via LINE Messaging API.
+Two n8n workflows allocate delivery quantities across a fleet using capacity, trip cost, working-hour, and packaging rules, then prepare LINE dispatch manifests.
 
 ---
 
@@ -87,7 +86,7 @@ $$\text{Full Packs} = \left\lfloor \frac{\text{Quantity}}{\text{BottlePerPack}} 
 ## 🚀 Setup & Deployment
 
 ### Prerequisites
-1. **n8n Instance** (Self-hosted or Cloud v1.0+)
+1. **n8n Instance** (with node versions compatible with the exported workflows)
 2. **Google Workspace Service Account / OAuth2** (Google Sheets scope)
 3. **LINE Messaging API Developer Channel**
 
@@ -95,7 +94,23 @@ $$\text{Full Packs} = \left\lfloor \frac{\text{Quantity}}{\text{BottlePerPack}} 
 1. Clone this repository:
    ```bash
    git clone https://github.com/Panutle/logistics-dispatch-optimizer.git
+   cd logistics-dispatch-optimizer
    ```
 2. In your n8n interface, select **Workflows** > **Import from File**.
 3. Import the 2 JSON files from the `workflows/` directory.
 4. Link your Google Sheets and LINE API credentials within each respective node.
+
+
+## Reproduction notes
+
+This repository contains workflow exports. The source spreadsheets, operational datasets, credentials, and connected services must be supplied separately.
+
+1. Import the JSON files with the workflows inactive and resolve any unavailable node types.
+2. Rebind credential references to accounts in your own n8n instance.
+3. Replace document IDs, sheet names, folder IDs, webhook endpoints, LINE recipient IDs, and embedded configuration in both Code and HTTP Request nodes. Credential binding alone is not enough.
+4. Match sheet headers and data types to the field names read by the workflow; there is no automatic source-schema provisioning.
+5. Run a representative input against test destinations and inspect the extracted records or generated plan. Verify the workflow timezone and alert recipients before enabling schedules.
+
+Provide order, route, fleet, packaging, and cost data matching the columns used by the planner. The greedy allocation heuristic does not establish a globally optimal vehicle-routing solution.
+
+The exports demonstrate implementation choices; this repository does not include a reproducible benchmark for accuracy, time savings, or production availability.
